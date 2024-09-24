@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import sportpath.dao.CourtDAOImpl;
 import sportpath.models.Court;
 
+import java.time.LocalDateTime;
 import java.util.Collections;
 import java.util.List;
 
@@ -23,5 +24,9 @@ public class CourtService {
             return Collections.emptyList();  // Возвращаем пустой список вместо null
         }
         return courtDAOImpl.findAllBySport(sport);
+    }
+
+    public int courtOnline(int courtId, LocalDateTime entryTime) {
+        return courtDAOImpl.CourtOnline(courtId, entryTime);
     }
 }

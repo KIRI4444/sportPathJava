@@ -10,7 +10,9 @@ import sportpath.ApiResponse;
 import sportpath.models.Court;
 import sportpath.services.CourtService;
 
+import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Locale;
 
 @RestController
 @RequestMapping("courts")
@@ -36,4 +38,11 @@ public class CourtController {
         return ResponseEntity.ok(response);
     }
 
+    @GetMapping("/online")
+    public ResponseEntity<ApiResponse> getOnlineCourts(@RequestParam ("courtId") int courtId,
+                                                                    @RequestParam ("entryTime") LocalDateTime entryTime) {
+        int courtOnline = courtService.courtOnline(courtId, entryTime);
+
+        return ResponseEntity.ok(new ApiResponse(200, "Court online retrieved successfully", courtOnline));
+    }
 }
