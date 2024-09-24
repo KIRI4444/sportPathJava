@@ -25,14 +25,14 @@ public class CourtController {
 
     @GetMapping
     public ResponseEntity<ApiResponse<List<Court>>> getCourtsBySport(@RequestParam("sport") String sport) {
-        System.out.println("sport: " + sport);
         List<Court> courts = courtService.getAllCourts(sport);
         ApiResponse<List<Court>> response;
         if (courts.isEmpty()) {
-            response = new ApiResponse<>(2, "No courts found for the specified sport.", null);
+            response = new ApiResponse<>(2, "No courts found for the specified sport", null);
         } else {
-            response = new ApiResponse<>(3, "Courts retrieved successfully.", courts);
+            response = new ApiResponse<>(3, "Courts retrieved successfully", courts);
         }
+
         return ResponseEntity.ok(response);
     }
 

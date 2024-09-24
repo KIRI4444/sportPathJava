@@ -17,7 +17,13 @@ public class Entry {
         this.entryTime = entryTime;
     }
 
-    public double getId() {
+    public Entry(int userId, int courtId, LocalDateTime entryTime) {
+        this.userId = userId;
+        this.courtId = courtId;
+        this.entryTime = entryTime;
+    }
+
+    public int getId() {
         return id;
     }
 
@@ -25,7 +31,7 @@ public class Entry {
         this.id = id;
     }
 
-    public double getUserId() {
+    public int getUserId() {
         return userId;
     }
 
@@ -33,7 +39,7 @@ public class Entry {
         this.userId = userId;
     }
 
-    public double getCourtId() {
+    public int getCourtId() {
         return courtId;
     }
 

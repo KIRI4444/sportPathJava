@@ -24,10 +24,10 @@ public class EntryDAOImpl implements EntryDAO {
 
     @Override
     public List<CourtOnline> findUserEntries(int id, LocalDateTime date) {
-        String sql = "SELECT courts.id, courts.address, courts.sport, " +
-                     "entries.entryTime, entries.id " +
-                     "FROM courts INNER JOIN entries on courts.id = entries.courtId " +
-                     "WHERE entries.userId = ? AND entries.entryTime > ?";
+        String sql = "SELECT courts.id AS courtId, courts.address AS courtAddress, courts.sport AS courtSport, " +
+                "entries.entryTime, entries.id AS entryId " +
+                "FROM courts INNER JOIN entries on courts.id = entries.courtId " +
+                "WHERE entries.userId = ? AND entries.entryTime > ?";
         return JdbcTemplate.query(sql, new Object[]{id, date}, new BeanPropertyRowMapper<>(CourtOnline.class));
     }
 
