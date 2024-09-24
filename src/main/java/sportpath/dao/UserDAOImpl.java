@@ -34,4 +34,9 @@ public class UserDAOImpl implements UserDAO {
         String sql = "SELECT id FROM users WHERE username = ?";
         return JdbcTemplate.queryForObject(sql, new Object[]{username}, Integer.class);
     }
+
+    public String getPasswordHashByUsername(String username) {
+        String sql = "SELECT password FROM users WHERE username = ?";
+        return JdbcTemplate.queryForObject(sql, new Object[]{username}, String.class);
+    }
 }

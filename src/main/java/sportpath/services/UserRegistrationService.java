@@ -5,6 +5,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 import sportpath.ApiResponse;
+import sportpath.BCrypt.PasswordUtils;
 import sportpath.dao.UserDAOImpl;
 import sportpath.models.User;
 
@@ -12,10 +13,12 @@ import sportpath.models.User;
 public class UserRegistrationService {
 
     private final UserDAOImpl userDAOImpl;
+    private final PasswordUtils passwordUtils;
 
     @Autowired
-    public UserRegistrationService(UserDAOImpl userDAOImpl) {
+    public UserRegistrationService(UserDAOImpl userDAOImpl, PasswordUtils passwordUtils) {
         this.userDAOImpl = userDAOImpl;
+        this.passwordUtils = passwordUtils;
     }
 
     public ResponseEntity<ApiResponse> registerUser(User user, int status) {
@@ -31,6 +34,8 @@ public class UserRegistrationService {
             return ResponseEntity.ok(new ApiResponse(status, "user already exists", ""));
         }
 
+        String hashedPassword = passwordUtils.hashPassword(user.getPassword());
+        user.setPassword(hashedPassword);
         userDAOImpl.save(user);
         int userId = userDAOImpl.getUserId(user.getUsername());
         String data = String.valueOf((userId));
