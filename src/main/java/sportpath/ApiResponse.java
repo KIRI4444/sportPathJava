@@ -1,12 +1,12 @@
 package sportpath;
 
-public class ApiResponse {
+public class ApiResponse<T> {
 
     private int status;
     private String message;
-    private String data;
+    private T data;
 
-    public ApiResponse(int status, String message, String data) {
+    public ApiResponse(int status, String message, T data) {
         this.status = status;
         this.message = message;
         this.data = data;
@@ -28,11 +28,11 @@ public class ApiResponse {
         this.message = message;
     }
 
-    public String getData() {
+    public T getData() {
         return data;
     }
 
-    public void setData(String data) {
+    public void setData(T data) {
         this.data = data;
     }
 }

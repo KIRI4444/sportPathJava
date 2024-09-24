@@ -20,7 +20,7 @@ public class CourtDAOImpl implements CourtDAO {
 
     @Override
     public List<Court> findAllBySport(String sport) {
-        String sql = "select * from court where sport=?";
+        String sql = "select * from courts where sport=?";
         return JdbcTemplate.query(sql, new BeanPropertyRowMapper<>(Court.class), sport);
     }
 
